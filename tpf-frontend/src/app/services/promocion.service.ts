@@ -10,13 +10,12 @@ export class PromocionService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = 'https://b5fb-170-84-127-219.ngrok-free.app/api/promocion';
+  url :string = 'http://localhost:3000/api/promocion';
 
   public save(promocion: Promocion): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(promocion);
@@ -26,8 +25,7 @@ export class PromocionService {
   public getAll(): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url, httpOptions);
@@ -36,8 +34,7 @@ export class PromocionService {
   public getById(id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/' + id, httpOptions);
@@ -55,8 +52,7 @@ export class PromocionService {
   public update(promocion: Promocion): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body: any = JSON.stringify(promocion);
@@ -66,8 +62,7 @@ export class PromocionService {
   public delete(id: string): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.delete(this.url+'/' + id, httpOptions);

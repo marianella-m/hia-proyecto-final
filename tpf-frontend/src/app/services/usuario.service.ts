@@ -11,49 +11,46 @@ export class UsuarioService {
 
   hostBase: string
 
-  constructor(private _http:HttpClient) { 
-    this.hostBase = "https://b5fb-170-84-127-219.ngrok-free.app/api/usuario/";
+  constructor(private _http: HttpClient) {
+    this.hostBase = "http://localhost:3000/api/usuario/";
   }
-  
+
   //CRUD
   add(propietario: Usuario): Observable<any> {
     let http = {
-      headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
     }
     let body: any = JSON.stringify(propietario);
     return this._http.post(this.hostBase, body, http);
 
   }
-  getAll():Observable<any>{
-    let httpOption = {
-      headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
-      })
-    }
-    return this._http.get(this.hostBase,httpOption);
-  }
-  getById(id:string):Observable<any>{
+  getAll(): Observable<any> {
     let httpOption = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
-    return this._http.get(this.hostBase+id,httpOption);
+    return this._http.get(this.hostBase, httpOption);
+  }
+  getById(id: string): Observable<any> {
+    let httpOption = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    }
+    return this._http.get(this.hostBase + id, httpOption);
   }
   getByDni(dni: string): Observable<any> {
     let httpOption = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     return this._http.get(this.hostBase + 'dni/' + dni, httpOption);
   }
+
   getByFiltros(filtros: {usuario: string, perfil: string, soloActivos : boolean}): Observable<any> {
     let http = {
       headers: new HttpHeaders({
@@ -64,21 +61,18 @@ export class UsuarioService {
     return this._http.post(this.hostBase + 'filtro/', body, http);
   }
 
-  delete(id:string):Observable<any>{
+  delete(id: string): Observable<any> {
     let httpOption = {
-      headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
       })
     }
-    return this._http.delete(this.hostBase+id,httpOption);
+    return this._http.delete(this.hostBase + id, httpOption);
   }
-
   update(propietario: Usuario): Observable<any> {
     let http = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body: any = JSON.stringify(propietario);
@@ -88,8 +82,7 @@ export class UsuarioService {
   public login(usuario: String, password: String): Observable<any> {
     const httpOption = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body = JSON.stringify({ usuario: usuario, password: password });
