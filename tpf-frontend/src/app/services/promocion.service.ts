@@ -1,0 +1,77 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Promocion } from '../models/promocion';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PromocionService {
+
+  constructor(private _http: HttpClient) { }
+
+  url :string = 'https://b5fb-170-84-127-219.ngrok-free.app/api/promocion';
+
+  public save(promocion: Promocion): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }),
+    }
+    let body: any = JSON.stringify(promocion);
+    return this._http.post(this.url, body, httpOptions);
+  }
+
+  public getAll(): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }),
+    }
+    return this._http.get(this.url, httpOptions);
+  }
+
+  public getById(id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }),
+    }
+    return this._http.get(this.url+'/' + id, httpOptions);
+  }
+
+  public getByAlquiler(id: string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+    }
+    return this._http.get(this.url + '/alquiler/' + id, httpOptions);
+  }
+
+  public update(promocion: Promocion): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      })
+    }
+    let body: any = JSON.stringify(promocion);
+    return this._http.put(this.url+'/' + promocion._id, body, httpOptions);
+  }
+
+  public delete(id: string): Observable<any>{
+    let httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'ngrok-skip-browser-warning': 'true'
+      }),
+    }
+    return this._http.delete(this.url+'/' + id, httpOptions);
+  }
+
+}
+
