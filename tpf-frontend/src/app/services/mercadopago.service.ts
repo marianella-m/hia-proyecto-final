@@ -11,7 +11,7 @@ export class MercadopagoService {
 
   getPagoLink(monto : number, idAlquier : string) : Observable<any>{
 
-    const url = " https://b5fb-170-84-127-219.ngrok-free.app/api/mercadopago/pago";
+    const url = "http://localhost:3000/api/mercadopago/pago";
 
     const httpOptions = {
       headers : new HttpHeaders({

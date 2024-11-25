@@ -7,16 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class PdfService {
 
-  private url = ' https://b5fb-170-84-127-219.ngrok-free.app/api/pdf';
-  private urlpdf = ' https://b5fb-170-84-127-219.ngrok-free.app/temp';
+  private url = 'http://localhost:3000/api/pdf';
+  private urlpdf = 'http://localhost:3000/temp';
   constructor(private _http: HttpClient) {}
 
   public generatePDF(data: any): Observable<any> {
     const httpOptions = {
       
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
       
     };

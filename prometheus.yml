@@ -1,0 +1,17 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s # Aumenta este valor según sea necesario
+
+scrape_configs:
+
+- job_name: 'prometheus'
+  static_configs:
+  - targets: ['localhost:9090'] # Dirección de Prometheus
+  
+- job_name: 'grafana'
+  static_configs:
+  - targets: ['grafana:3000'] # Dirección de Grafana
+
+- job_name: 'cadvisor'
+  static_configs:
+  - targets: ['cadvisor:8080'] # Dirección de Cadvisor
