@@ -1,8 +1,8 @@
 # Etapa de construcción
 FROM node:20 AS builder
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm install
+COPY tpf-frontend/package*.json tpf-frontend/angular.json tpf-frontend/tsconfig*.json ./
+RUN npm i
 COPY . .
 RUN npm run build --prod
 
