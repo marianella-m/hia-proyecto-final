@@ -11,41 +11,14 @@ services:
       - mongo-data:/data/db
       - ./backups:/backups
 
-  # Cliente para MongoDB
-  mongo-express:
-    image: mongo-express
-    container_name: mongo-cli
-    networks:
-      - tpf
-    ports:
-      - "8000:8081"
-    environment:
-      ME_CONFIG_MONGODB_SERVER: mongo-srv
-
-  # Servicio de Backups Automatizados
-  mongo-backup:
-    image: mongo
-    container_name: mongo-backup
-    depends_on:
-      - mongo
-    volumes:
-      - ./backups:/backups
-    entrypoint: >
-      /bin/sh -c "
-      while true; do
-        sleep 60;
-        mongodump --host mongo-srv --out /backups/backup-$(date +'%Y%m%d%H%M%S');
-      done"
-    networks:
-      - tpf
-
   # Servicio Frontend
   frontend:
     build:
       context: ./tpf-frontend
+      dockerfile: Dockerfile
     container_name: frontend-app
     ports:
-      - "4200:4200"
+      - "80:80"
     networks:
       - tpf
 
@@ -53,6 +26,7 @@ services:
   backend:
     build:
       context: ./tpf-backend
+      dockerfile: Dockerfile
     container_name: backend-app
     ports:
       - "3000:3000"
@@ -63,47 +37,6 @@ services:
     networks:
       - tpf
 
-  grafana:
-    container_name: grafana
-    image: grafana/grafana
-    volumes:
-      - ./data/grafana/data:/var/lib/grafana
-      - ./data/grafana/logs:/var/log/grafana
-    ports:
-      - "3003:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-      - GF_SECURITY_ALLOW_EMBEDDING=true
-      - GF_HTTP_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN=*
-      - GF_LOG_MODE=console file
-    networks:
-      - tpf
-
-  prometheus:
-    container_name: prometheus
-    image: prom/prometheus
-    volumes:
-      - ./data/prometheus:/prometheus
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-    ports:
-      - "9090:9090"
-    networks:
-      - tpf
-
-  cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.47.0
-    container_name: cadvisor
-    ports:
-      - 8081:8080
-    volumes:
-      - /var/run:/var/run:ro
-      - /sys:/sys:ro
-      - /var/lib/docker/:/var/lib/docker:ro
-    privileged: true
-    restart: unless-stopped
-    networks:
-      - tpf
-      
 networks:
   tpf:
 
