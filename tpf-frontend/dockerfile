@@ -1,9 +1,9 @@
 # Etapa de construcción
 FROM node:20 AS builder
 WORKDIR /app
-COPY tpf-frontend/package*.json tpf-frontend/angular.json tpf-frontend/tsconfig*.json ./
+COPY tpf-frontend/package*.json ./
 RUN npm i
-COPY . .
+COPY tpf-frontend/ .
 RUN npm run build --prod
 
 # Etapa de producción
