@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class NovedadService {
   
-  url :string = ' https://b5fb-170-84-127-219.ngrok-free.app/api/novedad';
+  url :string = 'https://amazone-back.onrender.com/api/novedad';
 
   constructor(private _http: HttpClient) { }
 

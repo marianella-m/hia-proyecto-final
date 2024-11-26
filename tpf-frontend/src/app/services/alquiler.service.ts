@@ -11,7 +11,7 @@ export class AlquilerService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = ' https://b5fb-170-84-127-219.ngrok-free.app/api/alquiler';
+  url :string = 'https://amazone-back.onrender.com/api/alquiler';
 
   public generarNumeroAlquiler(): Observable<any> {
     return this._http.get(this.url + '/generarNumeroAlquiler', { responseType: 'text' });

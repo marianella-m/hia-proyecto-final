@@ -12,7 +12,7 @@ export class UsuarioService {
   hostBase: string
 
   constructor(private _http:HttpClient) { 
-    this.hostBase = "https://b5fb-170-84-127-219.ngrok-free.app/api/usuario/";
+    this.hostBase = "https://amazone-back.onrender.com/api/usuario/";
   }
   
   //CRUD

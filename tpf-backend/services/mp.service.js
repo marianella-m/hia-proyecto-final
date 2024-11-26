@@ -15,9 +15,9 @@ class mpService {
           }
         ],
         back_urls: {
-          failure: "http://localhost:4200/alquiler-detalle/"+req.body.idAlquiler,
+          failure: "https://amazone-s7q7.onrender.com/alquiler-detalle/"+req.body.idAlquiler,
           pending: "/pending",
-          success: "http://localhost:4200/alquiler-detalle/"+req.body.idAlquiler
+          success: "https://amazone-s7q7.onrender.com/alquiler-detalle/"+req.body.idAlquiler
         },
         payment_methods: {
           installments : 1

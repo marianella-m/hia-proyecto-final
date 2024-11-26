@@ -10,7 +10,7 @@ export class PromocionService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = 'https://b5fb-170-84-127-219.ngrok-free.app/api/promocion';
+  url :string = 'https://amazone-back.onrender.com/api/promocion';
 
   public save(promocion: Promocion): Observable<any>{
     let httpOptions = {

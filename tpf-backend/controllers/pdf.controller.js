@@ -128,7 +128,7 @@ const generatePDF = async (data, res) => {
           }
 
           // Generar la URL de descarga del PDF
-          const pdfUrl = `http://localhost:3000/temp/${pdfFileName}`;
+          const pdfUrl = `https://amazone-back.onrender.com/temp/${pdfFileName}`;
           
           // Generar el código QR para la URL de descarga del PDF
           const qrCode = await QRCode.toDataURL(pdfUrl);

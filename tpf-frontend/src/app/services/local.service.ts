@@ -10,7 +10,7 @@ export class LocalService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = 'https://b5fb-170-84-127-219.ngrok-free.app/api/local/';
+  url :string = 'https://amazone-back.onrender.com/api/local/';
 
   public crearLocal(local: Local): Observable<any>{
     let httpOptions = {

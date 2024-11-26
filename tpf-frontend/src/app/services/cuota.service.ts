@@ -10,7 +10,7 @@ export class CuotaService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = 'https://b5fb-170-84-127-219.ngrok-free.app/api/cuota';
+  url :string = 'https://amazone-back.onrender.com/api/cuota';
 
   public crearCutoa(cuota: Cuota): Observable<any> {
     let httpOptions = {
