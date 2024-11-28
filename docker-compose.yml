@@ -20,7 +20,7 @@ services:
     ports:
       - "8000:8081"
     environment:
-      ME_CONFIG_MONGODB_SERVER: mongo-srv
+      ME_CONFIG_MONGODB_SERVER: mongo1
 
   # Servicio de Backups Automatizados
   mongo-backup:
@@ -103,9 +103,48 @@ services:
     restart: unless-stopped
     networks:
       - tpf
+
+  mongo1:
+      image: mongo
+      container_name: mongo1
+      networks:
+        - tpf
+      ports:
+        - "27021:27017"
+      volumes:
+        - mongo1-data:/data/db
+      command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
       
+  # Nodo secundario
+  mongo2:
+    image: mongo
+    container_name: mongo2
+    networks:
+      - tpf
+    ports:
+      - "27022:27017"
+    volumes:
+      - mongo2-data:/data/db
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+
+  # Nodo secundario adicional (opcional para alta disponibilidad)
+  mongo3:
+    image: mongo
+    container_name: mongo3
+    networks:
+      - tpf
+    ports:
+      - "27023:27017"
+    volumes:
+      - mongo3-data:/data/db
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+
 networks:
   tpf:
+    driver: bridge
 
 volumes:
   mongo-data:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
