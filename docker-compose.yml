@@ -59,7 +59,7 @@ services:
     depends_on:
       - mongo
     environment:
-      MONGO_URI: mongodb://mongo/tpf
+      MONGO_URI: ${MONGO_URI}
     networks:
       - tpf
 
