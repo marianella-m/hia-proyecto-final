@@ -1,0 +1,150 @@
+services:
+  # Servicio MongoDB
+  mongo:
+    image: mongo
+    container_name: mongo-srv
+    networks:
+      - tpf
+    ports:
+      - "27020:27017"
+    volumes:
+      - mongo-data:/data/db
+      - ./backups:/backups
+
+  # Cliente para MongoDB
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-cli
+    networks:
+      - tpf
+    ports:
+      - "8000:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: mongo1
+
+  # Servicio de Backups Automatizados
+  mongo-backup:
+    image: mongo
+    container_name: mongo-backup
+    depends_on:
+      - mongo
+    volumes:
+      - ./backups:/backups
+    entrypoint: >
+      /bin/sh -c "
+      while true; do
+        sleep 60;
+        mongodump --host mongo-srv --out /backups/backup-$(date +'%Y%m%d%H%M%S');
+      done"
+    networks:
+      - tpf
+
+  # Servicio Frontend
+  frontend:
+    build:
+      context: ./tpf-frontend
+    container_name: frontend-app
+    ports:
+      - "4200:4200"
+    networks:
+      - tpf
+
+  # Servicio Backend
+  backend:
+    build:
+      context: ./tpf-backend
+    container_name: backend-app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: ${MONGO_URI}
+    networks:
+      - tpf
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    volumes:
+      - ./data/grafana/data:/var/lib/grafana
+      - ./data/grafana/logs:/var/log/grafana
+    ports:
+      - "3003:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_HTTP_HEADERS_ACCESS_CONTROL_ALLOW_ORIGIN=*
+      - GF_LOG_MODE=console file
+    networks:
+      - tpf
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    volumes:
+      - ./data/prometheus:/prometheus
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - tpf
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
+    container_name: cadvisor
+    ports:
+      - 8081:8080
+    volumes:
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    privileged: true
+    restart: unless-stopped
+    networks:
+      - tpf
+
+  mongo1:
+      image: mongo
+      container_name: mongo1
+      networks:
+        - tpf
+      ports:
+        - "27021:27017"
+      volumes:
+        - mongo1-data:/data/db
+      command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+      
+  # Nodo secundario
+  mongo2:
+    image: mongo
+    container_name: mongo2
+    networks:
+      - tpf
+    ports:
+      - "27022:27017"
+    volumes:
+      - mongo2-data:/data/db
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+
+  # Nodo secundario adicional (opcional para alta disponibilidad)
+  mongo3:
+    image: mongo
+    container_name: mongo3
+    networks:
+      - tpf
+    ports:
+      - "27023:27017"
+    volumes:
+      - mongo3-data:/data/db
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+
+networks:
+  tpf:
+    driver: bridge
+
+volumes:
+  mongo-data:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
