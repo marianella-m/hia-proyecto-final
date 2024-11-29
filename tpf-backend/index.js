@@ -14,6 +14,7 @@ var app = express();
 // Ruta para servir archivos estáticos desde la carpeta 'temp'
 app.use('/temp', express.static(path.join(__dirname, 'temp'))); 
 app.use(express.json());
+
 app.use(cors({
     origin: 'https://amazone-s7q7.onrender.com',
     credentials: true
@@ -40,6 +41,7 @@ cron.schedule('0 0 * * *', () => {
     console.log('Verificando cuotas de alquileres');
 
     //Genera las cuotas necesarias para los alquileres
+
     axios.post('https://amazone-back.onrender.com/api/alquiler/generarCuotas')
         .then(response => {
             console.log('Cuotas Verificadas');

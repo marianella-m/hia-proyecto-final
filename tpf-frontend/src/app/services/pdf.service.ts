@@ -9,14 +9,14 @@ export class PdfService {
 
   private url = 'https://amazone-back.onrender.com/api/pdf';
   private urlpdf = 'https://amazone-back.onrender.com/temp';
+
   constructor(private _http: HttpClient) {}
 
   public generatePDF(data: any): Observable<any> {
     const httpOptions = {
       
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
       
     };

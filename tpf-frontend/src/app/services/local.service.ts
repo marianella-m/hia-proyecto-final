@@ -15,8 +15,7 @@ export class LocalService {
   public crearLocal(local: Local): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(local);
@@ -30,8 +29,7 @@ export class LocalService {
   public obtenerLocales():Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url, httpOptions);
@@ -40,8 +38,7 @@ export class LocalService {
   public eliminarLocal(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.delete(this.url+'/'+id, httpOptions);
@@ -50,8 +47,7 @@ export class LocalService {
   public obtenerLocalPorId(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/'+id, httpOptions);
@@ -60,8 +56,7 @@ export class LocalService {
   public modificarLocal(local: Local):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body:any = JSON.stringify(local);
@@ -71,8 +66,7 @@ export class LocalService {
   public obtenerLocalPorNombre(nombreLocal: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/nombrelocal/'+nombreLocal, httpOptions);
@@ -81,8 +75,7 @@ export class LocalService {
   public obtenerLocalesPorRubro(rubro: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/rubro'+rubro, httpOptions);

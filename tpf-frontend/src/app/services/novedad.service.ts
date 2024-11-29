@@ -16,8 +16,7 @@ export class NovedadService {
   public add(novedad: Novedad): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(novedad);
@@ -28,8 +27,7 @@ export class NovedadService {
   public getAll():Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url, httpOptions);
@@ -39,8 +37,7 @@ export class NovedadService {
   public getById(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/'+id, httpOptions);
@@ -50,8 +47,7 @@ export class NovedadService {
   public getBusqueda():Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/busqueda', httpOptions);
@@ -61,8 +57,7 @@ export class NovedadService {
   public getByAlquiler(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/alquiler/'+id, httpOptions);
@@ -72,8 +67,7 @@ export class NovedadService {
   public getByUsuario(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/usuario/'+id, httpOptions);
@@ -82,8 +76,7 @@ export class NovedadService {
   public remove(id: string):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.delete(this.url+'/'+id, httpOptions);
@@ -93,8 +86,7 @@ export class NovedadService {
   public update(novedad: Novedad):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders ({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body:any = JSON.stringify(novedad);

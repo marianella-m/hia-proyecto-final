@@ -21,8 +21,7 @@ export class AlquilerService {
   public crearAlquiler(alquiler: Alquiler): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(alquiler);
@@ -32,8 +31,7 @@ export class AlquilerService {
   public obtenerAlquileres(): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url, httpOptions);
@@ -42,8 +40,7 @@ export class AlquilerService {
   public eliminarAlquiler(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.delete(this.url+'/' + id, httpOptions);
@@ -52,8 +49,7 @@ export class AlquilerService {
   public obtenerAlquilerById(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/' + id, httpOptions);
@@ -62,8 +58,7 @@ export class AlquilerService {
   public modificarAlquiler(alquiler: Alquiler): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body: any = JSON.stringify(alquiler);
@@ -73,8 +68,7 @@ export class AlquilerService {
   public obtenerAlquileresByFecha(desde: Date, hasta: Date): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url + "/fecha?startDate=" + desde + "&endDate=" + hasta, httpOptions);
@@ -83,8 +77,7 @@ export class AlquilerService {
   public obtenerAlquilerByUsuario(usuarioId: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url + '/propietario?usuarioId=' + usuarioId, httpOptions); 
@@ -93,8 +86,7 @@ export class AlquilerService {
   public obtenerAlquilerByNumero(numeroId: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url + '/numero/' + numeroId, httpOptions);
@@ -103,8 +95,7 @@ export class AlquilerService {
   public agregarCuota(alquilerId: string,cuota: Cuota): Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(cuota);
@@ -114,8 +105,7 @@ export class AlquilerService {
   public actualizarCuota(idAlquiler:string,idCuota:string, cuota:Cuota):Observable<any>{
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(cuota);

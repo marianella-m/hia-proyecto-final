@@ -15,8 +15,7 @@ export class CuotaService {
   public crearCutoa(cuota: Cuota): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     let body: any = JSON.stringify(cuota);
@@ -26,8 +25,7 @@ export class CuotaService {
   public eliminarCuota(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.delete(this.url+'/' + id, httpOptions);
@@ -36,8 +34,7 @@ export class CuotaService {
   public modificarCuota(cuota: Cuota): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     }
     let body: any = JSON.stringify(cuota);
@@ -47,8 +44,7 @@ export class CuotaService {
   public obtenerCuotaById(id: string): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url+'/' + id, httpOptions);
@@ -56,8 +52,7 @@ export class CuotaService {
   public getCuotasByDateRange(startDate: string, endDate: string): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       })
     };
     const body = { startDate, endDate };
@@ -66,8 +61,7 @@ export class CuotaService {
   public obtenerCuotas(): Observable<any> {
     let httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
       }),
     }
     return this._http.get(this.url, httpOptions);
