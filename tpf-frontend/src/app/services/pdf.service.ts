@@ -7,8 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class PdfService {
 
-  private url = 'http://localhost:3000/api/pdf';
-  private urlpdf = 'http://localhost:3000/temp';
+  private url = 'https://amazone-back.onrender.com/api/pdf';
+  private urlpdf = 'https://amazone-back.onrender.com/temp';
+
   constructor(private _http: HttpClient) {}
 
   public generatePDF(data: any): Observable<any> {

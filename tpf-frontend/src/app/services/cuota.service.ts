@@ -10,7 +10,7 @@ export class CuotaService {
 
   constructor(private _http: HttpClient) { }
 
-  url :string = 'http://localhost:3000/api/cuota';
+  url :string = 'https://amazone-back.onrender.com/api/cuota';
 
   public crearCutoa(cuota: Cuota): Observable<any> {
     let httpOptions = {

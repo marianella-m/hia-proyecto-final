@@ -11,7 +11,7 @@ export class MercadopagoService {
 
   getPagoLink(monto : number, idAlquier : string) : Observable<any>{
 
-    const url = "http://localhost:3000/api/mercadopago/pago";
+    const url = "https://amazone-back.onrender.com/api/mercadopago/pago";
 
     const httpOptions = {
       headers : new HttpHeaders({

@@ -14,13 +14,16 @@ var app = express();
 // Ruta para servir archivos estáticos desde la carpeta 'temp'
 app.use('/temp', express.static(path.join(__dirname, 'temp'))); 
 app.use(express.json());
-app.use(cors({origin: 'http://localhost:4200'}));
+
+app.use(cors({
+    origin: 'https://amazone-s7q7.onrender.com',
+    credentials: true
+}));
 
 //config token
 dotenv.config();
 
-//Cargamos el modulo de direccionamiento de rutas
-//app.use('/api/yyyy', require('./routes/yyyy.route.js'));
+//Direccionamiento de rutas
 app.use('/api/usuario', require('./routes/usuario.route.js'));
 app.use('/api/alquiler', require('./routes/alquiler.route.js'));
 app.use('/api/local', require('./routes/local.route.js'));
@@ -38,7 +41,8 @@ cron.schedule('0 0 * * *', () => {
     console.log('Verificando cuotas de alquileres');
 
     //Genera las cuotas necesarias para los alquileres
-    axios.post('http://localhost:3000/api/alquiler/generarCuotas')
+
+    axios.post('https://amazone-back.onrender.com/api/alquiler/generarCuotas')
         .then(response => {
             console.log('Cuotas Verificadas');
         })
@@ -47,7 +51,7 @@ cron.schedule('0 0 * * *', () => {
         });
 
     //Verifica el vencimiento de las cuotas. A las cuotas vencidas se le agrega un 10% de recargo
-    axios.post('http://localhost:3000/api/alquiler/verificarCuotasVencidas')
+    axios.post('https://amazone-back.onrender.com/api/alquiler/verificarCuotasVencidas')
         .then(response => {
             console.log('Cuotas vencidas Verificadas');
         })
@@ -70,7 +74,7 @@ app.post('/api/pdf/generate', (req, res) => {
       }
   
       // Devolver la URL completa del PDF al frontend
-      const pdfUrl = `http://localhost:3000/temp/${pdfFileName}`;
+      const pdfUrl = `https://amazone-back.onrender.com/temp/${pdfFileName}`;
       res.json({ pdfUrl });
     });
   });

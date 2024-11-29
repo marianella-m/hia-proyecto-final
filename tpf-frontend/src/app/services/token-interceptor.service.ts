@@ -9,11 +9,13 @@ import { UsuarioService } from './usuario.service';
 export class TokenInterceptorService implements HttpInterceptor {
   constructor(private loginService: UsuarioService) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const tokenizeReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${this.loginService.getToken()}`
-      }
-    });
-    return next.handle(tokenizeReq);
-  }
+    if (!req.url.includes('/login')) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${this.loginService.getToken()}`,
+        },
+      });
+    }
+    return next.handle(req);
+  }  
 }

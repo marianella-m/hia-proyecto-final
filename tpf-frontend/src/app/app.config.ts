@@ -15,14 +15,10 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),    
     UsuarioService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true
-      },
-      {provide: FacebookModule, useValue: FacebookModule.forRoot()},
-      provideToastr(),
-      provideAnimations(),
-      provideHttpClient(withInterceptorsFromDi())
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    { provide: FacebookModule, useValue: FacebookModule.forRoot()},
+    provideToastr(),
+    provideAnimations(),
+    provideHttpClient(withInterceptorsFromDi())
   ]
 };
